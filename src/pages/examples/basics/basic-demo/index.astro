@@ -1,0 +1,8 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import App from "../../../../apps/examples/basics/basic-demo/App";
+---
+
+<Layout title="Welcome to Astro.">
+  <App client:only="react" />
+</Layout>
