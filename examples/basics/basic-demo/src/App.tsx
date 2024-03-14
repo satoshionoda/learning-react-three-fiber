@@ -16,7 +16,10 @@ const Box: FC<Props> = (props) => {
       ref={ref}
       scale={clicked ? 1.5 : 1}
       onClick={(event) => click(!clicked)}
-      onPointerOver={(event) => (event.stopPropagation(), hover(true))}
+      onPointerOver={(event) => {
+        hover(true);
+        return event.stopPropagation();
+      }}
       onPointerOut={(event) => hover(false)}
     >
       <boxGeometry args={[1, 1, 1]} />
