@@ -1,8 +1,8 @@
 import { FC, useRef, useState } from "react";
-import { GroupProps, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { Mesh } from "three";
 
-type Props = {} & GroupProps;
+type Props = {} & JSX.IntrinsicElements["group"];
 export const Dodecahedron: FC<Props> = (props) => {
   const meshRef = useRef<Mesh>(null!);
   const [hovered, hover] = useState(false);
