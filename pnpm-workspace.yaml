@@ -1,3 +1,4 @@
 packages:
   - "boilerplate"
   - "examples/basics/*"
+  - "projects/*"

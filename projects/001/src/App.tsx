@@ -1,16 +1,26 @@
 import { Canvas } from "@react-three/fiber";
 import { AccumulativeShadows, OrbitControls, RandomizedLight } from "@react-three/drei";
-import { Sphere } from "@/components/Sphere.tsx";
 import { Env } from "@/components/Env.tsx";
+import { Cubes } from "@/components/Cubes.tsx";
+import { useState } from "react";
 
+const LIGHT_FRAMES = 60;
 export default function App() {
+  const [lightFrames, setLightFrames] = useState(LIGHT_FRAMES);
+  const resetLights = () => {
+    setLightFrames(0);
+    setTimeout(() => {
+      setLightFrames(LIGHT_FRAMES);
+    }, 16);
+  };
   return (
     <Canvas shadows camera={{ position: [0, 0, 4.5], fov: 50 }}>
-      <group position={[0, -0.65, 0]}>
-        <Sphere />
+      <group position-y={-0.8}>
+        <Cubes {...{ resetLights }} />
+
         <AccumulativeShadows
           temporal
-          frames={200}
+          frames={lightFrames}
           color="gray"
           colorBlend={0.5}
           opacity={1}
