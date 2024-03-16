@@ -1,7 +1,7 @@
-import { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import { TrackballControls } from "@react-three/drei";
 import { Cloud } from "@apps/examples/basics/word-cloud/components/Cloud.tsx";
+import { TrackballControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
 
 export default function App() {
   return (

@@ -1,8 +1,10 @@
 import { Center } from "@react-three/drei";
 import { useControls } from "leva";
-import { type FC, useEffect, useMemo, useRef, useState } from "react";
-import { InstancedMesh, Object3D } from "three";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Object3D } from "three";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
+import type { FC } from "react";
+import type { InstancedMesh } from "three";
 
 const EDGE_LENGTH = 2;
 const tempObject = new Object3D();

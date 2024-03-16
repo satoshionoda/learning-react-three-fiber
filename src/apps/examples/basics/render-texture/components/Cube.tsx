@@ -1,9 +1,10 @@
 import { Dodecahedron } from "@apps/examples/basics/render-texture/components/Dodecachedron.tsx";
-import { type ComponentProps, useRef } from "react";
 import { PerspectiveCamera, RenderTexture, Text } from "@react-three/drei";
-import { suspend } from "suspend-react";
-import { Vector3 } from "three";
 import { useFrame } from "@react-three/fiber";
+import { useRef } from "react";
+import { suspend } from "suspend-react";
+import type { ComponentProps } from "react";
+import type { Vector3 } from "three";
 
 const inter = import("/assets/fonts/Inter-Regular.woff");
 

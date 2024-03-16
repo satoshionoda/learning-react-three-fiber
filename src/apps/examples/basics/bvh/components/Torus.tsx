@@ -1,8 +1,9 @@
-import { type FC, useRef } from "react";
 import { useHelper } from "@react-three/drei";
-import { MeshBVHHelper } from "three-mesh-bvh";
 import { useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
+import { useRef } from "react";
+import { MeshBVHHelper } from "three-mesh-bvh";
+import type { FC } from "react";
+import type { Mesh } from "three";
 
 type Props = {} & JSX.IntrinsicElements["mesh"];
 

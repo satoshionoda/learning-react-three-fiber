@@ -1,5 +1,4 @@
-/** @type {import("eslint").Config} */
-const config = {
+module.exports = {
   env: {
     browser: true,
     es2021: true,
@@ -20,9 +19,15 @@ const config = {
     "no-prototype-builtins": "off",
     "no-empty-pattern": "off",
     "react/prop-types": "off",
-    "react/no-unknown-property": ["error", { ignore: ["css"] }],
+    "react/react-in-jsx-scope": "off",
+    "react/no-unknown-property": ["off"],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": ["warn"],
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        additionalHooks: "useRecoilCallback",
+      },
+    ],
     "prefer-const": [
       "warn",
       {
@@ -47,6 +52,14 @@ const config = {
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        disallowTypeAnnotations: true,
+        fixStyle: "separate-type-imports",
+        prefer: "type-imports",
+      },
+    ],
     "import/order": [
       "error",
       {
@@ -60,4 +73,3 @@ const config = {
     ],
   },
 };
-export default config;

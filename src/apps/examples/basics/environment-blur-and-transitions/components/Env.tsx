@@ -1,7 +1,8 @@
-import { type FC, useState, useTransition } from "react";
-import { useControls } from "leva";
 import { Environment } from "@react-three/drei";
-import { type PresetsType } from "@react-three/drei/helpers/environment-assets";
+import { useControls } from "leva";
+import { useState, useTransition } from "react";
+import type { PresetsType } from "@react-three/drei/helpers/environment-assets";
+import type { FC } from "react";
 
 export const Env: FC = () => {
   const [preset, setPreset] = useState<PresetsType>("sunset");

@@ -1,7 +1,8 @@
-import { type FC, useMemo } from "react";
-import * as THREE from "three";
-import { generate } from "random-words";
 import { Word } from "@apps/examples/basics/word-cloud/components/Word.tsx";
+import { generate } from "random-words";
+import { useMemo } from "react";
+import * as THREE from "three";
+import type { FC } from "react";
 
 type Props = {
   count: number;

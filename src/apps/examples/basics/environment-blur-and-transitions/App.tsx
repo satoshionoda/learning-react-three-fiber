@@ -1,7 +1,7 @@
-import { Canvas } from "@react-three/fiber";
+import { Env } from "@apps/examples/basics/environment-blur-and-transitions/components/Env.tsx";
 import { Sphere } from "@apps/examples/basics/environment-blur-and-transitions/components/Sphere.tsx";
 import { AccumulativeShadows, OrbitControls, RandomizedLight } from "@react-three/drei";
-import { Env } from "@apps/examples/basics/environment-blur-and-transitions/components/Env.tsx";
+import { Canvas } from "@react-three/fiber";
 
 export default function App() {
   return (

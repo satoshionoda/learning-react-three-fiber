@@ -1,5 +1,5 @@
-import { Canvas } from "@react-three/fiber";
 import { ContactShadows, OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { Cube } from "./components/Cube.tsx";
 import { Dodecahedron } from "./components/Dodecachedron.tsx";
 

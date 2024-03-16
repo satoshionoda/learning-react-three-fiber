@@ -1,8 +1,9 @@
-import * as THREE from "three";
-import { Group, Mesh } from "three";
-import { type FC, type MutableRefObject, useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+import type { FC, MutableRefObject } from "react";
+import type { Group, Mesh } from "three";
 
 const pointDist = 25;
 const raycaster = new THREE.Raycaster();

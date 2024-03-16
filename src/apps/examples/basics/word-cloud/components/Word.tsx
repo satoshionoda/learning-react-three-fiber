@@ -1,14 +1,9 @@
-import * as THREE from "three";
-import {
-  type ComponentProps,
-  type FC,
-  type PropsWithChildren,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import { Billboard, type BillboardProps, Text } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
+import type { ThreeEvent } from "@react-three/fiber";
+import type { ComponentProps, FC, PropsWithChildren } from "react";
 
 type Props = PropsWithChildren<{} & BillboardProps>;
 const fontProps = {
@@ -37,6 +32,7 @@ export const Word: FC<Props> = ({ children, ...props }) => {
     const material = ref.current.material as THREE.MeshBasicMaterial;
     material.color.lerp(color.set(hovered ? "#fa2720" : "white"), 0.1);
   });
+
   return (
     <Billboard {...props}>
       <Text

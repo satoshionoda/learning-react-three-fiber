@@ -1,9 +1,9 @@
-import { Canvas } from "@react-three/fiber";
-import { Bvh, OrbitControls } from "@react-three/drei";
-import { Perf } from "r3f-perf";
-import { useControls } from "leva";
 import { Rays } from "@apps/examples/basics/bvh/components/Rays.tsx";
 import { Torus } from "@apps/examples/basics/bvh/components/Torus.tsx";
+import { Bvh, OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { useControls } from "leva";
+import { Perf } from "r3f-perf";
 
 export default function App() {
   const { enabled } = useControls({ enabled: true });

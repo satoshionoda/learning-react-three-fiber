@@ -1,6 +1,7 @@
-import { type FC, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
+import { useRef, useState } from "react";
+import type { FC } from "react";
+import type { Mesh } from "three";
 
 type Props = {} & JSX.IntrinsicElements["group"];
 export const Dodecahedron: FC<Props> = (props) => {

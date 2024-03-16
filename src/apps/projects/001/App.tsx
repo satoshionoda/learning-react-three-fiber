@@ -1,10 +1,10 @@
-import { Canvas } from "@react-three/fiber";
-import { AccumulativeShadows, OrbitControls, RandomizedLight } from "@react-three/drei";
-import { useState } from "react";
 import { Cubes } from "@apps/projects/001/components/Cubes.tsx";
 import { Env } from "@apps/projects/001/components/Env.tsx";
-import { Perf } from "r3f-perf";
+import { AccumulativeShadows, OrbitControls, RandomizedLight } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { useControls } from "leva";
+import { Perf } from "r3f-perf";
+import { useState } from "react";
 
 const LIGHT_FRAMES = 60;
 export default function App() {
