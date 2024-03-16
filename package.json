@@ -50,6 +50,7 @@
     "tailwindcss": "^3.4.1",
     "three": "^0.162.0",
     "three-mesh-bvh": "^0.7.3",
+    "three-stdlib": "^2.29.5",
     "tunnel-rat": "^0.1.2"
   }
 }
