@@ -145,6 +145,12 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2(@types/react@18.2.66)(react@18.2.0)
 
+  '@examples/basics/view-tracking':
+    dependencies:
+      '@studio-freight/lenis':
+        specifier: ^1.0.42
+        version: 1.0.42
+
   '@examples/basics/word-cloud':
     dependencies:
       random-words:
@@ -1294,6 +1300,10 @@ packages:
       react: '>= 16.3.0'
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /@studio-freight/lenis@1.0.42:
+    resolution: {integrity: sha512-HJAGf2DeM+BTvKzHv752z6Z7zy6bA643nZM7W88Ft9tnw2GsJSp6iJ+3cekjyMIWH+cloL2U9X82dKXgdU8kPg==}
     dev: false
 
   /@swc/core-darwin-arm64@1.4.8:
