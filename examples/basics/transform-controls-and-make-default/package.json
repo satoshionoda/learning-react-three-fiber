@@ -1,0 +1,16 @@
+{
+  "name": "transform-controls-and-make-default",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "Satoshi Onoda",
+  "license": "ISC",
+  "dependencies": {
+    "valtio": "^1.13.2"
+  }
+}
