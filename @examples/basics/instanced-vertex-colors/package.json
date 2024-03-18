@@ -1,0 +1,19 @@
+{
+  "name": "instanced-vertex-colors",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "Satoshi Onoda",
+  "license": "ISC",
+  "dependencies": {
+    "nice-color-palettes": "^3.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.18"
+  }
+}

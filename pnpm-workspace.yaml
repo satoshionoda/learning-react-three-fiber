@@ -1,4 +1,3 @@
 packages:
-  - "examples/basics/*"
-  - "projects/*"
-  - "astro"
+  - "@examples/basics/*"
+  - "@projects/*"
