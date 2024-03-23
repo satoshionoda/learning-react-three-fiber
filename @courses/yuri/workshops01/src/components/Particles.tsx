@@ -1,4 +1,5 @@
 import { useFrame } from "@react-three/fiber";
+import { makePlaneGeometry } from "@utils/makePlaneGeometry.ts";
 import { useMemo } from "react";
 import {
   BufferAttribute,
@@ -11,25 +12,6 @@ import {
 import fragmentShader from "@/shaders/fragment.glsl";
 import vertexShader from "@/shaders/vertex.glsl";
 
-const makeGeometry = (size: number) => {
-  const count = size * size;
-  const geometry = new BufferGeometry();
-  const positions = new Float32Array(count * 3);
-  const uvs = new Float32Array(count * 2);
-  for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-      const index = i * size + j;
-      positions[index * 3] = i / size;
-      positions[index * 3 + 1] = j / size;
-      positions[index * 3 + 2] = 0;
-      uvs[index * 2] = i / size;
-      uvs[index * 2 + 1] = j / size;
-    }
-  }
-  geometry.setAttribute("position", new BufferAttribute(positions, 3));
-  geometry.setAttribute("uv", new BufferAttribute(uvs, 2));
-  return geometry;
-};
 const makeDataTexture = (size: number) => {
   const count = size * size;
   const data = new Float32Array(4 * count);
@@ -59,7 +41,7 @@ const makeShaderMaterial = (size: number) => {
 
 export const Particles = () => {
   const size = 32;
-  const geometry = useMemo(() => makeGeometry(size), []);
+  const geometry = useMemo(() => makePlaneGeometry(size), []);
   const material = useMemo(() => makeShaderMaterial(size), []);
   useFrame((state) => {
     material.uniforms.time.value = state.clock.getElapsedTime();

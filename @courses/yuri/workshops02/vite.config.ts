@@ -6,6 +6,9 @@ import glsl from "vite-plugin-glsl";
 export default defineConfig(({ mode }) => ({
   plugins: [react(), glsl()],
   resolve: {
-    alias: [{ find: /^@\//, replacement: `${__dirname}/src/` }],
+    alias: [
+      { find: /^@\//, replacement: `${__dirname}/src/` },
+      { find: /^@utils\//, replacement: `${__dirname}/../utils/` },
+    ],
   },
 }));
