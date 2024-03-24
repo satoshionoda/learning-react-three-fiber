@@ -7,6 +7,15 @@ export const getDataTextureFromImage = async (
   imgSize: number = 200
 ): Promise<DataTexture> => {
   const img = await loadImage(url);
+  return makeTextureFromImgElement(img, textureSize, imgSize);
+};
+
+export const makeTextureFromImgElement = (
+  img: HTMLImageElement,
+  textureSize: number,
+  imgSize: number = 200,
+  probability: number = 0.9
+) => {
   const canvas = document.createElement("canvas");
   canvas.width = imgSize;
   canvas.height = imgSize;
@@ -36,9 +45,9 @@ export const getDataTextureFromImage = async (
   for (let i = 0; i < textureSize; i++) {
     for (let j = 0; j < textureSize; j++) {
       const index = i * textureSize + j;
-      // 90%の確率で画像のピクセルからランダムに拾い、残りは完全にランダムなピクセルを使う
+      // probabilityの確率で画像のピクセルからランダムに拾い、残りは完全にランダムなピクセルを使う
       const randomPixel =
-        Math.random() < 0.9
+        Math.random() < probability
           ? pixels[Math.floor(Math.random() * pixels.length)]
           : { x: 3 * (Math.random() - 0.5), y: 3 * (Math.random() - 0.5) };
       // 初期位置を少しずらす

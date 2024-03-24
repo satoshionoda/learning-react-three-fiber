@@ -1,3 +1,4 @@
+import { getDataTextureFromImage } from "@utils/getDataTextureFromImage.ts";
 import { makeDataTexture } from "@utils/makeDataTexture.ts";
 import { makePlaneGeometry } from "@utils/makePlaneGeometry.ts";
 import * as THREE from "three";
@@ -65,6 +66,7 @@ export const initApp = (container: HTMLElement) => {
   initUI();
   initScene(container);
   resetScene();
+
   //
   window.addEventListener("resize", () => onResize(container));
   window.addEventListener("mousemove", onMouseMove);
@@ -129,6 +131,9 @@ const resetScene = () => {
   fboScene.children = [];
   addObjects();
   setupFBO();
+  Promise.all([getDataTextureFromImage("/logo.png", Params.size, Params.size)]).then(([tex1]) => {
+    fboUniforms.uOriginal.value = tex1;
+  });
 };
 
 const addObjects = () => {
