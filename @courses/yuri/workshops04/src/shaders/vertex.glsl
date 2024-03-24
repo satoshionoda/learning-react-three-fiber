@@ -1,7 +1,7 @@
 
 
 varying vec2 vUv;
-uniform float uTime;
+uniform float time;
 uniform float uPointSize;
 
 uniform sampler2D uTexture;
