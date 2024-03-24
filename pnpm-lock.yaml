@@ -20,6 +20,9 @@ importers:
       '@react-three/postprocessing':
         specifier: ^2.16.2
         version: 2.16.2(@react-three/fiber@8.15.19)(@types/three@0.162.0)(react@18.2.0)(three@0.162.0)
+      '@tweakpane/core':
+        specifier: ^2.0.3
+        version: 2.0.3
       '@types/node':
         specifier: ^20.11.27
         version: 20.11.28
@@ -62,6 +65,9 @@ importers:
       three-stdlib:
         specifier: ^2.29.5
         version: 2.29.5(three@0.162.0)
+      tweakpane:
+        specifier: ^4.0.3
+        version: 4.0.3
       vite-plugin-glsl:
         specifier: ^1.2.1
         version: 1.2.1(vite@5.1.6)
@@ -114,11 +120,17 @@ importers:
 
   '@courses/yuri/workshops01': {}
 
+  '@courses/yuri/workshops01a': {}
+
+  '@courses/yuri/workshops01b': {}
+
   '@courses/yuri/workshops02': {}
 
   '@courses/yuri/workshops03': {}
 
   '@courses/yuri/workshops04': {}
+
+  '@courses/yuri/workshops05': {}
 
   '@examples/basics/basic-demo': {}
 
@@ -1715,6 +1727,10 @@ packages:
 
   /@tabler/icons@3.1.0:
     resolution: {integrity: sha512-CpZGyS1IVJKFcv88yZ2sYZIpWWhQ6oy76BQKQ5SF0fGgOqgyqKdBGG/YGyyMW632on37MX7VqQIMTzN/uQqmFg==}
+    dev: false
+
+  /@tweakpane/core@2.0.3:
+    resolution: {integrity: sha512-qHci4XA1Wngpwy8IzsLh5JEdscz8aDti/9YhyOaq01si+cgNDaZfwzTtXdn1+xTxSnCM+pW4Zb2/4eqn+K1ATw==}
     dev: false
 
   /@tweenjs/tween.js@23.1.1:
@@ -5824,6 +5840,10 @@ packages:
       - '@types/react'
       - immer
       - react
+    dev: false
+
+  /tweakpane@4.0.3:
+    resolution: {integrity: sha512-BlcWOAe8oe4c+k9pmLBARGdWB6MVZMszayekkixQXTgkxTaYoTUpHpwVEp+3HkoamZkomodpbBf0CkguIHTgLg==}
     dev: false
 
   /type-check@0.4.0:

@@ -44,8 +44,9 @@ export const getDataTextureFromImage = async (
       // 初期位置を少しずらす
       data[4 * index] = randomPixel.x + (Math.random() - 0.5) * 0.01;
       data[4 * index + 1] = randomPixel.y + (Math.random() - 0.5) * 0.01;
-      data[4 * index + 2] = 0;
-      data[4 * index + 3] = 1;
+      // b,aにランダムなベクトルを設定する
+      data[4 * index + 2] = (Math.random() - 0.5) * 0.001;
+      data[4 * index + 3] = (Math.random() - 0.5) * 0.001;
     }
   }
 
