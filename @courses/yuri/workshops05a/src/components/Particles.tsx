@@ -1,13 +1,9 @@
 import { useFBO } from "@react-three/drei";
 import { createPortal, useFrame } from "@react-three/fiber";
-import {
-  getDataTextureFromImage,
-  makeTextureFromImgElement,
-} from "@utils/getDataTextureFromImage.ts";
+import { makeTextureFromImgElement } from "@utils/getDataTextureFromImage.ts";
 import { loadImage } from "@utils/loadImage.ts";
 import { makeDataTexture } from "@utils/makeDataTexture.ts";
 import { makePlaneGeometry } from "@utils/makePlaneGeometry.ts";
-import { useControls } from "leva";
 import { Suspense, useMemo } from "react";
 import usePromise from "react-promise-suspense";
 import * as THREE from "three";
@@ -72,7 +68,7 @@ const useInit = (props: {
     const tempCamera = new OrthographicCamera(-1, 1, 1, -1, -2, 2);
     //
     return { pointGeometry, pointMaterial, tempScene, tempCamera, tempMaterial };
-  }, [size, imgA, imgB]);
+  }, [size, imgA, imgB, pointSize, pointAlpha, progress]);
   //
   //set up FBO
   let useTarget0 = true;

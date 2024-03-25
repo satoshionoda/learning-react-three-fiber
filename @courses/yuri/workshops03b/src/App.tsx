@@ -163,7 +163,7 @@ const initScene = (container: HTMLElement) => {
   container.appendChild(renderer.domElement);
   resetMainCamera(container);
   mainCamera.position.z = 1;
-  const controls = new OrbitControls(mainCamera, renderer.domElement);
+  new OrbitControls(mainCamera, renderer.domElement);
 };
 const onResize = (container: HTMLElement) => {
   resetMainCamera(container);

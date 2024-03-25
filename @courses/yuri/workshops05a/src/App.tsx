@@ -1,9 +1,8 @@
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { loadImage } from "@utils/loadImage.ts";
 import { useControls } from "leva";
-import { useEffect, useState } from "react";
 import { Particles } from "@/components/Particles.tsx";
+
 export default function App() {
   const { size, pointSize, pointAlpha, progress } = useControls({
     size: { value: 256, min: 8, max: 1024, step: 8 },

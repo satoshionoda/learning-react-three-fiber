@@ -95,7 +95,7 @@ const initScene = (container: HTMLElement) => {
     img2 = tex2;
     resetTexture();
   });
-  const controls = new OrbitControls(mainCamera, renderer.domElement);
+  new OrbitControls(mainCamera, renderer.domElement);
 };
 
 const setupOnResize = (container: HTMLElement) => {
