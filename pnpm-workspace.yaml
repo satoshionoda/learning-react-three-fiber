@@ -2,3 +2,4 @@ packages:
   - "@examples/basics/*"
   - "@courses/yuri/*"
   - "@projects/*"
+  - "@playgrounds/*"
