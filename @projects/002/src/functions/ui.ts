@@ -62,7 +62,7 @@ export const initUI = (resetScene: () => void) => {
   wave.addBinding(Params, "waveComplexity", { min: 0.1, max: 10, step: 0.1, label: "Complexity" });
   wave.addBinding(Params, "waveSpeedX", { step: 1, label: "SpeedX" });
   wave.addBinding(Params, "waveSpeedY", { step: 1, label: "SpeedY" });
-  const fresnel = baseTab.addFolder({ title: "Fresnel" });
+  const fresnel = colorsTab.addFolder({ title: "Fresnel" });
   fresnel.addBinding(Params, "inverseFresnel", { label: "Inverse" });
   fresnel.addBinding(Params, "ior", { min: 0, max: 3, step: 0.01, label: "IoR" });
   fresnel.addBinding(Params, "fresnelPower", { min: 0, max: 10, step: 0.1, label: "Power" });
