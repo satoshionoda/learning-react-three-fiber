@@ -126,16 +126,16 @@ void main() {
     } else if (uUseColorC && uUseColorD) {
         color = makeTwoPointGradient(uColorC, uColorD, uStepC, uStepD, fresnel);
     } else if (uUseColorA) {
-                fresnel = 1.0 - fresnel;
+//                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorA, fresnel);
     } else if (uUseColorB) {
-                fresnel = 1.0 - fresnel;
+//                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorB, fresnel);
     } else if (uUseColorC) {
-                fresnel = 1.0 - fresnel;
+//                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorC, fresnel);
     } else if (uUseColorD) {
-                fresnel = 1.0 - fresnel;
+//                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorD, fresnel);
     }
 
