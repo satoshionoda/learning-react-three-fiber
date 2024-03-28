@@ -26,14 +26,28 @@ uniform bool uUseColorD;
 vec4 multiplyColor(vec3 colorA, float val) {
     return vec4(colorA * val, 1.0);
 }
-vec4 makeTwoPointGradient(
+vec4 makeGradient(
     vec3 colorA, vec3 colorB,
     float stepA, float stepB,
     float val
 ) {
     // valをグラデーションの範囲内に正規化
-    float normalizedPosition = (val - stepA) / (stepB - stepA);
-    return vec4(mix(colorA, colorB, normalizedPosition), 1.0);
+    float mixFactor = (val - stepA) / (stepB - stepA);
+    return vec4(mix(colorA, colorB, mixFactor), 1.0);
+}
+
+vec4 makeTwoPointGradient(
+    vec3 colorA, vec3 colorB,
+    float stepA, float stepB,
+    float val
+) {
+    if (val <= stepA) {
+        return vec4(colorA, 1.0);
+    } else if (val < stepB) {
+        return makeGradient(colorA, colorB, stepA, stepB, val);
+    } else {
+        return vec4(colorB, 1.0);
+    }
 }
 
 vec4 makeThreePointGradient(
@@ -41,16 +55,14 @@ vec4 makeThreePointGradient(
     float stepA, float stepB, float stepC,
     float val
 ) {
-    // valをグラデーションの範囲内に正規化
-    float normalizedPosition = (val - stepA) / (stepC - stepA);
-    if (normalizedPosition < stepB) {
-        // stepAとstepBの間で補間
-        float mixFactor = (normalizedPosition - stepA) / (stepB - stepA);
-        return vec4(mix(colorA, colorB, mixFactor), 1.0);
+    if (val <= stepA) {
+        return vec4(colorA, 1.0);
+    } else if (val < stepB) {
+        return makeGradient(colorA, colorB, stepA, stepB, val);
+    } else if (val < stepC) {
+        return makeGradient(colorB, colorC, stepB, stepC, val);
     } else {
-        // stepBとstepCの間で補間
-        float mixFactor = (normalizedPosition - stepB) / (stepC - stepB);
-        return vec4(mix(colorB, colorC, mixFactor), 1.0);
+        return vec4(colorC, 1.0);
     }
 }
 
@@ -59,21 +71,16 @@ vec4 makeFourPointGradient(
     float stepA, float stepB, float stepC, float stepD,
     float position
 ) {
-    // positionをグラデーションの範囲内に正規化
-    float normalizedPosition = (position - stepA) / (stepD - stepA);
-
-    if (normalizedPosition < stepB) {
-        // stepAとstepBの間で補間
-        float mixFactor = (normalizedPosition - stepA) / (stepB - stepA);
-        return vec4(mix(colorA, colorB, mixFactor), 1.0);
-    } else if (normalizedPosition < stepC) {
-        // stepBとstepCの間で補間
-        float mixFactor = (normalizedPosition - stepB) / (stepC - stepB);
-        return vec4(mix(colorB, colorC, mixFactor), 1.0);
+    if (position < stepA) {
+        return vec4(colorA, 1.0);
+    } else if (position < stepB) {
+        return makeGradient(colorA, colorB, stepA, stepB, position);
+    } else if (position < stepC) {
+        return makeGradient(colorB, colorC, stepB, stepC, position);
+    } else if (position < stepD) {
+        return makeGradient(colorC, colorD, stepC, stepD, position);
     } else {
-        // stepCとstepDの間で補間
-        float mixFactor = (normalizedPosition - stepC) / (stepD - stepC);
-        return vec4(mix(colorC, colorD, mixFactor), 1.0);
+        return vec4(colorD, 1.0);
     }
 }
 
@@ -119,16 +126,16 @@ void main() {
     } else if (uUseColorC && uUseColorD) {
         color = makeTwoPointGradient(uColorC, uColorD, uStepC, uStepD, fresnel);
     } else if (uUseColorA) {
-//        fresnel = 1.0 - fresnel;
+                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorA, fresnel);
     } else if (uUseColorB) {
-//        fresnel = 1.0 - fresnel;
+                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorB, fresnel);
     } else if (uUseColorC) {
-//        fresnel = 1.0 - fresnel;
+                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorC, fresnel);
     } else if (uUseColorD) {
-//        fresnel = 1.0 - fresnel;
+                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorD, fresnel);
     }
 
