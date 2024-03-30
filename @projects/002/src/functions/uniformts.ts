@@ -9,6 +9,8 @@ type Val<
 type MainUniforms = {
   uDPI: Val<number>;
   uTime: Val<number>;
+  uMouse: Val<THREE.Vector3>;
+  uVirtualCursor: Val<THREE.Vector3>;
   uPointAlpha: Val<number>;
   uMaxPointSize: Val<number>;
   uMinPointSize: Val<number>;
@@ -37,6 +39,8 @@ type MainUniforms = {
 export const uniforms: MainUniforms = {
   uDPI: { value: window.devicePixelRatio },
   uTime: { value: 0 },
+  uMouse: { value: new THREE.Vector3() },
+  uVirtualCursor: { value: new THREE.Vector3() },
   uPointAlpha: { value: Params.pointAlpha },
   uMaxPointSize: { value: Params.maxPointSize },
   uMinPointSize: { value: Params.minPointSize },
@@ -62,9 +66,12 @@ export const uniforms: MainUniforms = {
   uUseColorD: { value: Params.useColorD },
 };
 
+const virtualCursor = new THREE.Vector3();
 export const updateUniforms = (time: number) => {
   const BASE_HEIGHT = 1300;
   const pointSizeRatio = window.innerHeight / BASE_HEIGHT;
+  //
+
   uniforms.uTime.value = time;
   uniforms.uPointAlpha.value = Params.pointAlpha;
   uniforms.uMaxPointSize.value = Params.maxPointSize * pointSizeRatio;
@@ -89,4 +96,10 @@ export const updateUniforms = (time: number) => {
   uniforms.uUseColorB.value = Params.useColorB;
   uniforms.uUseColorC.value = Params.useColorC;
   uniforms.uUseColorD.value = Params.useColorD;
+
+  const vc = uniforms.uVirtualCursor.value;
+  const m = uniforms.uMouse.value;
+  vc.x += (m.x - vc.x) * 0.05;
+  vc.y += (m.y - vc.y) * 0.05;
+  vc.z += (m.z - vc.z) * 0.05;
 };

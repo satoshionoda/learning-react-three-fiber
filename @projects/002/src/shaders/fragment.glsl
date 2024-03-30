@@ -4,6 +4,7 @@ varying vec3 vPosition;
 varying vec3 vModelViewNormal;
 varying float vVisibility;
 uniform sampler2D uTexture;
+uniform vec3 uMouse;
 uniform float uPointAlpha;
 uniform float uIor;
 uniform bool uInverseFresnel;
@@ -135,8 +136,11 @@ void main() {
     } else if (uUseColorD) {
         color = multiplyColor(uColorD, fresnel);
     }
-
-
+//    float dist = distance(uMouse, vPosition);
+//    float radius = 0.5;
+//    float maxDistance = sqrt(pow(radius, 2.0) + pow(radius, 2.0))/5.0;
+//    float touchFactor = (0.01 - 1.0) / maxDistance * dist + 1.0;
+//    color.rgb = vec3(0.0,touchFactor,1.0);
 
     gl_FragColor = vec4(color.rgb, uPointAlpha);
     #include <encodings_fragment>

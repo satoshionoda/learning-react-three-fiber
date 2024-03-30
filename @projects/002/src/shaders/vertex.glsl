@@ -5,6 +5,8 @@ varying vec3 vNormal;
 varying vec3 vPosition;
 varying vec3 vModelViewNormal;
 varying float vVisibility;
+uniform vec3 uMouse;
+uniform vec3 uVirtualCursor;
 uniform float uPointSize;
 uniform float uWaveSize;
 uniform float uWaveComplexity;
@@ -114,8 +116,8 @@ float fit(float unscaled, float originalMin, float originalMax, float minAllowed
     return (maxAllowed - minAllowed) * (unscaled - originalMin) / (originalMax - originalMin) + minAllowed;
 }
 
-float wave(vec3 position) {
-    return fit(smoothMod(position.y * uWaveComplexity, 1.0, 1.2), 0.35, 0.6, 0.0, 1.0);
+float wave(vec3 position,float complexity) {
+    return fit(smoothMod(position.y * complexity, 1.0, 1.2), 0.35, 0.6, 0.0, 1.0);
 }
 
 float map(float value, float min1, float max1, float min2, float max2) {
@@ -131,14 +133,19 @@ void main() {
 
     vec3 newPosition = position;
 
+    float dist = distance(uVirtualCursor, position);
+    float radius = 0.5;
+    float maxDistance = sqrt(pow(radius, 2.0) + pow(radius, 2.0)) / 3.0;
+    float touchFactor = max((0.2 - 2.0) / maxDistance * dist + 2.0, 0.2);
+    float complexity = uWaveComplexity * touchFactor;
+
     vec3 coords = normal;
     float uRepeatX = 2.0;
     float uRepeatY = 3.0;
     coords.x -= sin(uTime/ uWaveSpeedX / uRepeatX)  * uRepeatX;
     coords.y -= cos(uTime/ uWaveSpeedY / uRepeatY)  * uRepeatY;
     vec3 noisePattern = vec3(noise(coords));
-    float pattern = wave(noisePattern);
-
+    float pattern = wave(noisePattern,complexity);
 
     float waveSize = map(uWaveSize, 1.0, 100.0, 60.0, 5.0);
     newPosition += normal * (pattern / waveSize);
@@ -148,6 +155,7 @@ void main() {
     vModelViewNormal = modelViewNormal;
     vVisibility = dot(modelViewNormal, normalize(-modelViewPosition.xyz));
     gl_PointSize = vVisibility * (uMaxPointSize - uMinPointSize) + uMinPointSize * uDPI;
+
     //
     gl_Position = projectionMatrix * modelViewPosition;
 }

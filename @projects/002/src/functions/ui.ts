@@ -35,14 +35,14 @@ export const Params = {
 
 Object.assign(Params, {
   point: 68,
-  pointAlpha: 0.20000000000000007,
+  pointAlpha: 0.29000000000000004,
   maxPointSize: 8.1,
-  minPointSize: 2.4,
+  minPointSize: 2.6999999999999997,
   blendMode: 2,
   waveSize: 20,
   waveComplexity: 4.3999999999999995,
-  waveSpeedX: 41,
-  waveSpeedY: 40,
+  waveSpeedX: 35,
+  waveSpeedY: 21,
   ior: 0.36000000000000004,
   gamma: 1.34,
   inverseFresnel: false,
@@ -50,7 +50,7 @@ Object.assign(Params, {
   colorA: "#120e1c",
   colorB: "#ffcfa4",
   colorC: "#cef8ff",
-  colorD: "#ebb1a2",
+  colorD: "#93a7ff",
   stepA: 0.33,
   stepB: 0.43000000000000005,
   stepC: 0.75,
@@ -61,7 +61,7 @@ Object.assign(Params, {
   useColorD: true,
   bloomThreshold: 0.27,
   bloomIntensity: 11.96,
-  bloomOpacity: 0.65,
+  bloomOpacity: 0.08,
 });
 
 export const initUI = (resetScene: () => void) => {
