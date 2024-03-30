@@ -1,5 +1,7 @@
+import * as EssentialsPlugin from "@tweakpane/plugin-essentials";
 import * as THREE from "three";
 import { Pane } from "tweakpane";
+import type { FpsGraphBladeApi } from "@tweakpane/plugin-essentials/dist/types/fps-graph/api/fps-graph";
 export const Params = {
   point: 68,
   pointAlpha: 0.11000000000000006,
@@ -64,6 +66,7 @@ Object.assign(Params, {
 
 export const initUI = (resetScene: () => void) => {
   const pane = new Pane();
+  pane.registerPlugin(EssentialsPlugin);
   const tabs = pane.addTab({ pages: [{ title: "base" }, { title: "colors" }] });
   const baseTab = tabs.pages[0];
   const colorsTab = tabs.pages[1];
@@ -123,10 +126,18 @@ export const initUI = (resetScene: () => void) => {
   bloom.addBinding(Params, "bloomIntensity", { min: 0, max: 100, step: 0.01, label: "Intensity" });
   bloom.addBinding(Params, "bloomThreshold", { min: 0, max: 1, step: 0.01, label: "Threshold" });
 
+  const fpsGraph = pane.addBlade({
+    view: "fpsgraph",
+    label: "fps",
+    rows: 2,
+  }) as FpsGraphBladeApi;
+
   pane.addButton({ title: "dump" }).on("click", () => {
     const str = JSON.stringify(Params, null, 2);
     navigator.clipboard.writeText(str).then(() => {
       console.log(Params);
     });
   });
+
+  return { fpsGraph };
 };

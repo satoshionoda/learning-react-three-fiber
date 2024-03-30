@@ -9,6 +9,7 @@ import {
 import * as THREE from "three";
 import { Scene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import type { FpsGraphBladeApi } from "@tweakpane/plugin-essentials/dist/types/fps-graph/api/fps-graph";
 import { setupRaycaster } from "@/functions/raycaster.ts";
 import { initUI, Params } from "@/functions/ui.ts";
 import { uniforms, updateUniforms } from "@/functions/uniformts.ts";
@@ -33,12 +34,12 @@ export const initApp = (container: HTMLElement) => {
   initScene(container);
   resetScene();
 
-  initUI(resetScene);
+  const { fpsGraph } = initUI(resetScene);
   setupRaycaster(mainScene, mainCamera);
   setupOnResize(container);
   //
 
-  onRender();
+  onRender(fpsGraph);
 };
 
 const updatePostProcessing = () => {
@@ -47,14 +48,16 @@ const updatePostProcessing = () => {
   bloom.blendMode.opacity.value = Params.bloomOpacity;
 };
 
-const onRender = () => {
+const onRender = (fpsGraph: FpsGraphBladeApi) => {
+  fpsGraph.begin();
   time += 0.16;
 
   updatePostProcessing();
   updateUniforms(time);
   // renderer.render(mainScene, mainCamera);
   composer.render();
-  window.requestAnimationFrame(onRender.bind(this));
+  fpsGraph.end();
+  window.requestAnimationFrame(onRender.bind(this, fpsGraph));
 };
 
 const resetScene = () => {
@@ -91,7 +94,7 @@ const initScene = (container: HTMLElement) => {
   container.appendChild(renderer.domElement);
   resetMainCamera(container);
   mainCamera.position.z = 1;
-  mainScene.background = new THREE.Color(0x000000);
+  // mainScene.background = new THREE.Color(0x000000);
   new OrbitControls(mainCamera, renderer.domElement);
 };
 
