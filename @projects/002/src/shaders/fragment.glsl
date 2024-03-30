@@ -92,16 +92,17 @@ void main() {
     if (length(gl_PointCoord - vec2(0.5, 0.5)) > 0.475) {
         discard;
     }
+    // フレネル
     vec3 viewDirection = normalize(cameraPosition - vPosition);
     float cosTheta = dot(viewDirection, vNormal);
-    float ior = uIor;
-    float r0 = (1.0 - ior) / (1.0 + ior);
+    float r0 = (1.0 - uIor) / (1.0 + uIor);
     r0 = r0 * r0;
     float fresnel = r0 + (1.0 - r0) * pow((1.0 - cosTheta), uFresnelPower);
+    fresnel = pow(fresnel, 1.0 / uGamma);
     if (uInverseFresnel) {
         fresnel = 1.0 - fresnel;
     }
-    fresnel = pow(fresnel, 1.0 / uGamma);
+    //
     vec4 color = vec4(vec3(fresnel), 1.0);
     if (uUseColorA && uUseColorB && uUseColorC && uUseColorD) {
         color = makeFourPointGradient(uColorA, uColorB, uColorC, uColorD, uStepA, uStepB, uStepC, uStepD, fresnel);
@@ -126,20 +127,19 @@ void main() {
     } else if (uUseColorC && uUseColorD) {
         color = makeTwoPointGradient(uColorC, uColorD, uStepC, uStepD, fresnel);
     } else if (uUseColorA) {
-//                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorA, fresnel);
     } else if (uUseColorB) {
-//                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorB, fresnel);
     } else if (uUseColorC) {
-//                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorC, fresnel);
     } else if (uUseColorD) {
-//                fresnel = 1.0 - fresnel;
         color = multiplyColor(uColorD, fresnel);
     }
 
+
+
     gl_FragColor = vec4(color.rgb, uPointAlpha);
+    #include <encodings_fragment>
 }
 
 

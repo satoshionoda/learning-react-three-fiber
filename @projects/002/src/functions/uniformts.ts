@@ -63,10 +63,12 @@ export const uniforms: MainUniforms = {
 };
 
 export const updateUniforms = (time: number) => {
+  const BASE_HEIGHT = 1300;
+  const pointSizeRatio = window.innerHeight / BASE_HEIGHT;
   uniforms.uTime.value = time;
   uniforms.uPointAlpha.value = Params.pointAlpha;
-  uniforms.uMaxPointSize.value = Params.maxPointSize;
-  uniforms.uMinPointSize.value = Params.minPointSize;
+  uniforms.uMaxPointSize.value = Params.maxPointSize * pointSizeRatio;
+  uniforms.uMinPointSize.value = Params.minPointSize * pointSizeRatio;
   uniforms.uWaveSize.value = Params.waveSize;
   uniforms.uWaveComplexity.value = Params.waveComplexity;
   uniforms.uWaveSpeedX.value = Params.waveSpeedX;

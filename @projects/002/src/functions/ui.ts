@@ -26,7 +26,41 @@ export const Params = {
   useColorB: true,
   useColorC: true,
   useColorD: true,
+  bloomThreshold: 0.5,
+  bloomIntensity: 1,
+  bloomOpacity: 1,
 };
+
+Object.assign(Params, {
+  point: 68,
+  pointAlpha: 0.20000000000000007,
+  maxPointSize: 8.1,
+  minPointSize: 2.4,
+  blendMode: 2,
+  waveSize: 20,
+  waveComplexity: 4.3999999999999995,
+  waveSpeedX: 41,
+  waveSpeedY: 40,
+  ior: 0.36000000000000004,
+  gamma: 1.34,
+  inverseFresnel: false,
+  fresnelPower: 2.0999999999999996,
+  colorA: "#120e1c",
+  colorB: "#ffcfa4",
+  colorC: "#cef8ff",
+  colorD: "#ebb1a2",
+  stepA: 0.33,
+  stepB: 0.43000000000000005,
+  stepC: 0.75,
+  stepD: 0.9999999999999999,
+  useColorA: true,
+  useColorB: false,
+  useColorC: false,
+  useColorD: true,
+  bloomThreshold: 0.27,
+  bloomIntensity: 11.96,
+  bloomOpacity: 0.65,
+});
 
 export const initUI = (resetScene: () => void) => {
   const pane = new Pane();
@@ -83,6 +117,11 @@ export const initUI = (resetScene: () => void) => {
   colorD.addBinding(Params, "useColorD", { label: "Use" });
   colorD.addBinding(Params, "colorD", { label: "Color" });
   colorD.addBinding(Params, "stepD", { min: 0, max: 1, step: 0.01, label: "Step" });
+
+  const bloom = baseTab.addFolder({ title: "Bloom" });
+  bloom.addBinding(Params, "bloomOpacity", { min: 0, max: 1, step: 0.01, label: "Opacity" });
+  bloom.addBinding(Params, "bloomIntensity", { min: 0, max: 100, step: 0.01, label: "Intensity" });
+  bloom.addBinding(Params, "bloomThreshold", { min: 0, max: 1, step: 0.01, label: "Threshold" });
 
   pane.addButton({ title: "dump" }).on("click", () => {
     const str = JSON.stringify(Params, null, 2);
