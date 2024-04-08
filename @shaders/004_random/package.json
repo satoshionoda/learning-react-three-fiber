@@ -1,11 +1,12 @@
 {
-  "name": "@playgrounds/001",
+  "name": "@shader/001",
   "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "Satoshi Onoda",
