@@ -42,6 +42,40 @@ export const Params = {
   infoText: "This is a shader experiment.\nThis is a shader experiment.",
 };
 
+// Object.assign(Params, {
+//   type: 0,
+//   dither: 2.1739130434782608,
+//   rotation: 135,
+//   scale: 1,
+//   rotationSpeed: 0,
+//   offsetSpeed: 0,
+//   colorA: "#030c2c",
+//   colorB: "#416175",
+//   colorC: "#d2985b",
+//   colorD: "#1f005c",
+//   colorE: "#ff0000",
+//   colorF: "#00ff00",
+//   colorG: "#0000ff",
+//   colorH: "#ffff00",
+//   stepA: 1.734723475976807e-18,
+//   stepB: 0.71,
+//   stepC: 1,
+//   stepD: 0.9500000000000001,
+//   stepE: 1,
+//   stepF: 1,
+//   stepG: 1,
+//   stepH: 1,
+//   useColorA: true,
+//   useColorB: true,
+//   useColorC: true,
+//   useColorD: false,
+//   useColorE: false,
+//   useColorF: false,
+//   useColorG: false,
+//   useColorH: false,
+//   infoText: "This is a shader experiment.\nThis is a shader experiment.",
+// });
+
 export const initUI = (resetScene: () => void) => {
   const pane = new Pane();
   pane.registerPlugin(EssentialsPlugin);
@@ -171,7 +205,6 @@ VIVID GRADIENT GENERATOR TOOL
 * <a href="https://www.gradient-animator.com" target="_blank">CSS GRADIENT ANIMATOR</a>
 `;
   wrapper.appendChild(paragraph);
-  infoTab.selected = true;
 
   //
   pane.addButton({ title: "dump" }).on("click", () => {

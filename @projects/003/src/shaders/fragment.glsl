@@ -44,10 +44,10 @@ const int MIX_TYPE_HSB = 4;
 
 
 vec4 makeGradient(
-  vec4 colorA, vec4 colorB,
-  float stepA, float stepB,
-  float val,
-  int mixType
+vec4 colorA, vec4 colorB,
+float stepA, float stepB,
+float val,
+int mixType
 ) {
   float mixFactor = (val - stepA) / (stepB - stepA);
   if (mixType == MIX_TYPE_LCH) {
@@ -214,7 +214,7 @@ vec3 RGBtoHSL(vec3 color) {
     }
   }
 
-  H = H * 60.0; // 度数法に変換
+  H = H * 60.0;// 度数法に変換
   if (H < 0.0) {
     H = H + 360.0;
   }
@@ -233,11 +233,11 @@ vec3 HSLtoRGB(vec3 hsl) {
   } else {
     float q = L < 0.5 ? L * (1.0 + S) : L + S - L * S;
     float p = 2.0 * L - q;
-    float Hk = H / 360.0; // 色相を0から1の範囲に正規化
+    float Hk = H / 360.0;// 色相を0から1の範囲に正規化
     float T[3];
-    T[0] = Hk + 1.0 / 3.0; // 赤
-    T[1] = Hk;           // 緑
-    T[2] = Hk - 1.0 / 3.0; // 青
+    T[0] = Hk + 1.0 / 3.0;// 赤
+    T[1] = Hk;// 緑
+    T[2] = Hk - 1.0 / 3.0;// 青
     for (int i = 0; i < 3; ++i) {
       if (T[i] < 0.0) T[i] += 1.0;
       if (T[i] > 1.0) T[i] -= 1.0;
@@ -313,7 +313,7 @@ vec3 HSBtoRGB(vec3 hsb) {
 
 float random (vec2 xy) {
   return fract(sin(dot(xy.xy,
-  vec2(12.9898 ,78.2338)))*
+  vec2(12.9898, 78.2338)))*
   43758.5453123);
 }
 
@@ -324,12 +324,17 @@ void main() {
   float rad = deg * DEG2RAD;
   float x = vUv.x;
   float y = vUv.y;
-  x = x * 2.0 - 1.0;
-  y = y * 2.0 - 1.0;
+//  x = (x * 2.0 - 1.0) / sqrt(2.0);
+//  y = (y * 2.0 - 1.0) / sqrt(2.0);
+  float rotationMod = abs(sin(rad)) + abs(cos(rad));
+  x = (x * 2.0 - 1.0) / rotationMod;
+  y = (y * 2.0 - 1.0) / rotationMod;
+//    x = (x * 2.0 - 1.0) / sqrt(2.0);
+//    y = (y * 2.0 - 1.0) / sqrt(2.0);
   float gradientPosition = x * cos(rad) / uScale + y * sin(rad) / uScale;
   gradientPosition = (gradientPosition + 1.0) / 2.0;
   //時間でグラデーションを動かす
-    gradientPosition = mod(gradientPosition + uTime /100.0 * uOffsetSpeed, 1.0);
+  gradientPosition = mod(gradientPosition + uTime /100.0 * uOffsetSpeed, 1.0);
 
   vec4 gradient = vec4(0.0);
   GradientPoint points[MAX_POINTS];
@@ -375,7 +380,7 @@ void main() {
 
   vec4 finalColor = vec4(gradient.r + noiseValue, gradient.g + noiseValue, gradient.b + noiseValue, gradient.a);
 
-//  finalColor = vec4(noise, 1.0);
+  //  finalColor = vec4(noise, 1.0);
   gl_FragColor = finalColor;
 }
 
