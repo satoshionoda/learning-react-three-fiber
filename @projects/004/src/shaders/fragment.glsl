@@ -16,6 +16,9 @@ uniform float uProgress;
 uniform bool uShowUV;
 uniform float uDistortionAmount;
 uniform vec2 uRippleCenter;
+uniform float uRippleSpeed;
+uniform float uRippleFrequency;
+uniform float uMaxDistortion;
 
 
 void main() {
@@ -25,10 +28,10 @@ void main() {
   uv.x *= aspect;
   vec2 p = uv + vec2(uRippleCenter.x * aspect * -1.0, uRippleCenter.y);
   float d = length(p);
-  vec2 ripple = p / d * cos(pow(d, 1.3)*20.0+uTime * -10.0)*0.03 * uDistortionAmount;
+  vec2 ripple = p / d * cos(pow(d, 1.3)*20.0 * uRippleFrequency + uTime * uRippleSpeed * -10.0)*0.03 * uDistortionAmount * uMaxDistortion;
   float step = 1.0;
   step = smoothstep(0.01, 1.0, d);
-  if(d > 0.2){
+  if (d > 0.2){
     step -= smoothstep(0.2, 3.0, d);
   }
   vec2 distortedUv = vUv + ripple * step;
@@ -36,7 +39,7 @@ void main() {
   vec4 resultA = texture2D(uImgA, distortedUv);
   vec4 resultB = texture2D(uImgB, distortedUv);
   vec4 finalColor = mix(resultA, resultB, uProgress);
-  if(uShowUV){
+  if (uShowUV){
     finalColor = vec4(distortedUv, 1.0, 1.0);
   }
   gl_FragColor = finalColor;

@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { Ease24, Tween24 } from "tween24";
+import { Params } from "@/functions/ui.ts";
 import { uniforms } from "@/functions/uniformts.ts";
 
 const textures: THREE.Texture[] = [];
@@ -43,17 +44,37 @@ const doTransition = (index: number, x: number = 0, y: number = 0) => {
   uniforms.uImgB.value = getTexture(index + 1);
   uniforms.uProgress.value = 0;
   uniforms.uRippleCenter.value.set(x, y);
+  const {
+    transitionInterval,
+    transitionDuration,
+    transitionEasing,
+    rippleInDuration,
+    rippleInEasing,
+    rippleOutDuration,
+    rippleOutEasing,
+  } = Params;
   const currentTween = Tween24.parallel(
-    Tween24.tween(uniforms.uProgress, 3.0, Ease24._4_QuartOut, { value: 1 }),
+    Tween24.tween(uniforms.uProgress, transitionDuration, (Ease24 as any)[transitionEasing], {
+      value: 1,
+    }),
     Tween24.serial(
-      Tween24.tween(uniforms.uDistortionAmount, 0.5, Ease24._4_QuartOut, { value: 0.5 }),
-      Tween24.tween(uniforms.uDistortionAmount, 3.0, Ease24._1_SineInOut, { value: 0 })
+      Tween24.tween(uniforms.uDistortionAmount, rippleInDuration, (Ease24 as any)[rippleInEasing], {
+        value: 0.5,
+      }),
+      Tween24.tween(
+        uniforms.uDistortionAmount,
+        rippleOutDuration,
+        (Ease24 as any)[rippleOutEasing],
+        {
+          value: 0,
+        }
+      )
     )
   ).onComplete(() => {
     isTransitioning = false;
     timeout = window.setTimeout(() => {
       doTransition(currentIndex + 1);
-    }, 5000);
+    }, transitionInterval * 1000);
   });
   currentTween.play();
 };
