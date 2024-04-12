@@ -25,12 +25,7 @@ type MainUniforms = {
   uProgress: Val<number>;
   uShowUV: Val<boolean>;
   uDistortionAmount: Val<number>;
-  uMx1: Val<number>;
-  uMy1: Val<number>;
-  uMx2: Val<number>;
-  uMy2: Val<number>;
-  uMx3: Val<number>;
-  uMy3: Val<number>;
+  uRippleCenter: Val<THREE.Vector2>;
 };
 
 export const uniforms: MainUniforms = {
@@ -41,15 +36,10 @@ export const uniforms: MainUniforms = {
   uVirtualCursor: { value: new THREE.Vector3() },
   uImgA: { value: new THREE.DataTexture(new Uint8Array(0), 0, 0) },
   uImgB: { value: new THREE.DataTexture(new Uint8Array(0), 0, 0) },
-  uProgress: { value: 0 },
+  uProgress: { value: Params.progress },
   uShowUV: { value: Params.showUv },
   uDistortionAmount: { value: Params.distortion },
-  uMx1: { value: Params.mx1 },
-  uMy1: { value: Params.my1 },
-  uMx2: { value: Params.mx2 },
-  uMy2: { value: Params.my2 },
-  uMx3: { value: Params.mx3 },
-  uMy3: { value: Params.my3 },
+  uRippleCenter: { value: new THREE.Vector2(0, 0) },
 };
 
 export const updateUniforms = (time: number) => {
@@ -58,13 +48,8 @@ export const updateUniforms = (time: number) => {
 
   uniforms.uTime.value = time;
   uniforms.uShowUV.value = Params.showUv;
-  uniforms.uDistortionAmount.value = Params.distortion;
-  uniforms.uMx1.value = Params.mx1;
-  uniforms.uMy1.value = Params.my1;
-  uniforms.uMx2.value = Params.mx2;
-  uniforms.uMy2.value = Params.my2;
-  uniforms.uMx3.value = Params.mx3;
-  uniforms.uMy3.value = Params.my3;
+  // uniforms.uDistortionAmount.value = Params.distortion;
+  // uniforms.uProgress.value = Params.progress;
 
   const vc = uniforms.uVirtualCursor.value;
   const m = uniforms.uMouse.value;

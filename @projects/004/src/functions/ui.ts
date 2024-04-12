@@ -5,33 +5,8 @@ import type { FpsGraphBladeApi } from "@tweakpane/plugin-essentials/dist/types/f
 export const Params = {
   showUv: false,
   distortion: 0.5,
-  mx1: 10,
-  my1: 0,
-  mx2: 0,
-  my2: 0,
-  mx3: 0,
-  my3: 0,
+  progress: 0,
 };
-Object.assign(Params, {
-  showUv: false,
-  distortion: 0.26086956521739113,
-  mx1: 5,
-  my1: 5,
-  mx2: -6.956521739130435,
-  my2: -3.695652173913043,
-  mx3: -0.21739130434782616,
-  my3: 4.3478260869565215,
-});
-Object.assign(Params, {
-  showUv: false,
-  distortion: 3,
-  mx1: 7.39130434782609,
-  my1: 5,
-  mx2: -6.956521739130435,
-  my2: -3.695652173913043,
-  mx3: -0.21739130434782616,
-  my3: 4.3478260869565215,
-});
 
 export const initUI = (resetScene: () => void) => {
   const pane = new Pane();
@@ -43,30 +18,11 @@ export const initUI = (resetScene: () => void) => {
     min: -2,
     max: 2,
   });
-  pane.addBinding(Params, "mx1", {
-    min: -10,
-    max: 10,
-  });
 
-  pane.addBinding(Params, "my1", {
-    min: -10,
-    max: 10,
-  });
-  pane.addBinding(Params, "mx2", {
-    min: -10,
-    max: 10,
-  });
-  pane.addBinding(Params, "my2", {
-    min: -10,
-    max: 10,
-  });
-  pane.addBinding(Params, "mx3", {
-    min: -10,
-    max: 10,
-  });
-  pane.addBinding(Params, "my3", {
-    min: -10,
-    max: 10,
+  pane.addBinding(Params, "progress", {
+    label: "Progress",
+    min: 0,
+    max: 1,
   });
 
   const fpsGraph = pane.addBlade({

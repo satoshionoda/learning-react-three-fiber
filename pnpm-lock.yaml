@@ -74,6 +74,9 @@ importers:
       tweakpane:
         specifier: ^4.0.3
         version: 4.0.3
+      tween24:
+        specifier: ^1.5.0
+        version: 1.5.0
       vite-plugin-glsl:
         specifier: ^1.2.1
         version: 1.2.1(vite@5.1.6)
@@ -245,6 +248,10 @@ importers:
   '@projects/001': {}
 
   '@projects/002': {}
+
+  '@projects/003': {}
+
+  '@projects/004': {}
 
 packages:
 
@@ -5878,6 +5885,10 @@ packages:
 
   /tweakpane@4.0.3:
     resolution: {integrity: sha512-BlcWOAe8oe4c+k9pmLBARGdWB6MVZMszayekkixQXTgkxTaYoTUpHpwVEp+3HkoamZkomodpbBf0CkguIHTgLg==}
+    dev: false
+
+  /tween24@1.5.0:
+    resolution: {integrity: sha512-MhCKn3kYkzzKj7G32FZLFUKIESjFWPO6atiSzP7TAs7+hGwpoy0O5z/9hvpzLiJtsY8kaobxBM3RXcHje5+zng==}
     dev: false
 
   /type-check@0.4.0:
