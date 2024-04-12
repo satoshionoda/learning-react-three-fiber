@@ -13,7 +13,7 @@ export const loadTextures = async () => {
   const promises: Promise<THREE.Texture>[] = [];
   imgNames.forEach((imgName) => {
     const loader = new THREE.TextureLoader();
-    promises.push(loader.loadAsync(`/assets/${imgName}`));
+    promises.push(loader.loadAsync(`./assets/${imgName}`));
   });
   const result: THREE.Texture[] = await Promise.all(promises);
   textures.push(...result);
