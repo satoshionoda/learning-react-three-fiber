@@ -10,6 +10,6 @@ export default defineConfig(({ mode }) => ({
     alias: [{ find: /^@\//, replacement: `${__dirname}/src/` }],
   },
   build: {
-    outDir: `../../dist/projects/003`,
+    outDir: `../../dist/projects/004`,
   },
 }));
