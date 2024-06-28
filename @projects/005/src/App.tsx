@@ -40,7 +40,7 @@ export const initApp = async (container: HTMLElement) => {
 
 const loadScene = async (): Promise<GLTF> => {
   const loader = new GLTFLoader();
-  return await loader.loadAsync("/assets/dna.gltf");
+  return await loader.loadAsync("./assets/dna.gltf");
 };
 
 const updatePostProcessing = () => {
@@ -65,7 +65,6 @@ const onRender = (fpsGraph: FpsGraphBladeApi) => {
 
 const resetScene = () => {
   mainScene.children = [];
-  console.log(model);
   if (!model) return;
   const camera = model.cameras[0] as THREE.PerspectiveCamera;
   mainCamera.copy(camera, true);
