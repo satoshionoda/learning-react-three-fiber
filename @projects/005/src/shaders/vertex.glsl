@@ -1,5 +1,6 @@
 attribute float colorFactor;
 attribute float size;
+attribute float shift;
 uniform float uTime;
 varying vec2 vUv;
 varying vec3 vNormal;
@@ -13,6 +14,7 @@ uniform float uDPI;
 uniform float uMaxPointSize;
 uniform float uMinPointSize;
 uniform float uTranslation;
+uniform float uBaseTranslation;
 out vec4 fragColor;
 
 
@@ -25,7 +27,7 @@ void main() {
   vColorFactor = colorFactor;
 
   vec3 newPosition = position;
-  newPosition += normal * uTranslation * vColorFactor;
+  newPosition += (normal * uTranslation * vColorFactor) + (normal * uBaseTranslation * shift);
 
   vec4 modelViewPosition = modelViewMatrix * vec4(newPosition, 1.0);
   vec3 modelViewNormal = normalize(normalMatrix * normal);

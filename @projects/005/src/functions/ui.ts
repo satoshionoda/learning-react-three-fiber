@@ -19,6 +19,23 @@ export const Params = {
   translation: 0,
 };
 
+Object.assign(Params, {
+  rotationSpeed: 0.001,
+  count: 600_000,
+  pointShift: 0.109,
+  pointAlpha: 0.8,
+  maxPointSize: 3.599999999999999,
+  minPointSize: 0.01,
+  backgroundColor: "#000000",
+  colorA: "#d1bd46",
+  colorB: "#4c5d64",
+  blendMode: 2,
+  bloomThreshold: 0.14000000000000004,
+  bloomIntensity: 9.78,
+  bloomOpacity: 0.34,
+  translation: 0,
+});
+
 export const initUI = (resetScene: () => void) => {
   const pane = new Pane();
   pane.registerPlugin(EssentialsPlugin);
@@ -34,9 +51,7 @@ export const initUI = (resetScene: () => void) => {
   points
     .addBinding(Params, "count", { min: 100, max: 1000000, step: 100 })
     .on("change", resetScene);
-  points
-    .addBinding(Params, "pointShift", { min: -1, max: 1, step: 0.001, label: "shift" })
-    .on("change", resetScene);
+  points.addBinding(Params, "pointShift", { min: -1, max: 1, step: 0.001, label: "shift" });
   points
     .addBinding(Params, "blendMode", {
       label: "blend",

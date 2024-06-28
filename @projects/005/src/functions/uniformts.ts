@@ -16,6 +16,7 @@ type MainUniforms = {
   uMaxPointSize: Val<number>;
   uMinPointSize: Val<number>;
   uTranslation: Val<number>;
+  uBaseTranslation: Val<number>;
 };
 
 export const uniforms: MainUniforms = {
@@ -28,6 +29,7 @@ export const uniforms: MainUniforms = {
   uMaxPointSize: { value: Params.maxPointSize },
   uMinPointSize: { value: Params.minPointSize },
   uTranslation: { value: Params.translation },
+  uBaseTranslation: { value: Params.pointShift },
 };
 
 export const updateUniforms = (time: number) => {
@@ -39,6 +41,7 @@ export const updateUniforms = (time: number) => {
   uniforms.uMaxPointSize.value = Params.maxPointSize;
   uniforms.uMinPointSize.value = Params.minPointSize;
   uniforms.uTranslation.value = Params.translation;
+  uniforms.uBaseTranslation.value = Params.pointShift;
   const vc = uniforms.uVirtualCursor.value;
   const m = uniforms.uMouse.value;
   vc.x += (m.x - vc.x) * 0.05;
